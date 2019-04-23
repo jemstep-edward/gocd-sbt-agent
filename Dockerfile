@@ -1,4 +1,4 @@
-FROM gocd/gocd-agent-ubuntu-18.04
+FROM gocd/gocd-agent-ubuntu-18.04:v19.2.0
 MAINTAINER Jemstep Dev <dev@jemstep.com>
 
 RUN echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \

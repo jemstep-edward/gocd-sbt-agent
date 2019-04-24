@@ -1,9 +1,13 @@
-FROM gocd/gocd-agent-ubuntu-18.04:v19.2.0
+FROM gocd/gocd-agent-ubuntu-16.04:v19.2.0
 MAINTAINER Jemstep Dev <dev@jemstep.com>
 
+ENV JAVA_VER 8
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+
 RUN apt-get -y update && \
-        apt-get -y install gnupg2 && \
-        echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
+        apt-get -y install gnupg2 apt-transport-https openjdk-8-jdk
+
+RUN echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
         apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823 && \
         apt-get -y update && \
-        apt-get -y install sbt
+        apt-get install sbt

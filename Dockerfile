@@ -27,6 +27,8 @@ RUN cd todo-http4s-doobie && \
 
 USER root
 
-RUN cd .. && \
+RUN cd / && \
+        ls -lh && \
+        ls -lh todo-http4s-doobie && \
         mv todo-http4s-doobie/project /project && \
         rm -r todo-http4s-doobie

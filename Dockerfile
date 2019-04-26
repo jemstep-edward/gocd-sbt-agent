@@ -5,20 +5,19 @@ MAINTAINER Jemstep Dev <dev@jemstep.com>
 #  - https://supermarket.chef.io/cookbooks/java
 #  - https://docs.docker.com/develop/develop-images/multistage-build/
 
-COPY todo-http4s-doobie ./todo-http4s-doobie
-
 ENV JAVA_VER 8
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 RUN apt-get -y update && \
-        apt-get -y install gnupg2 apt-transport-https openjdk-8-jdk
+        apt-get -y install gnupg2 apt-transport-https openjdk-8-jdk git
 
 RUN echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
         apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823 && \
         apt-get -y update && \
         apt-get -y install sbt
 
-RUN chown -R go todo-http4s-doobie
+RUN git clone https://github.com/jemstep-edward/todo-http4s-doobie.git && \
+        chown -R go todo-http4s-doobie
 
 USER go
 

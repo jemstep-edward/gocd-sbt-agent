@@ -18,8 +18,14 @@ RUN echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.lis
         apt-get -y update && \
         apt-get -y install sbt
 
+RUN chown -R go todo-http4s-doobie
+
+USER go
+
 RUN cd todo-http4s-doobie && \
         sbt test:compile
+
+USER root
 
 RUN cd .. && \
         rm -r todo-http4s-doobie

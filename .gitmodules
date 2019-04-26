@@ -1,0 +1,3 @@
+[submodule "todo-http4s-doobie"]
+	path = todo-http4s-doobie
+	url = git@github.com:jemstep-edward/todo-http4s-doobie.git
